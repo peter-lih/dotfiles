@@ -1,0 +1,14 @@
+# bass
+__*
+
+# fish
+completions
+fish_variables
+fish_plugins
+fish/functions/bass.fish
+fish/functions/fish_mode_prompt.fish
+fish/functions/fish_prompt.fish
+fish/functions/fish_right_prompt.fish
+
+# xcode
+.DS_Store
