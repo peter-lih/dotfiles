@@ -47,7 +47,7 @@ set -gx CLOUDSDK_PYTHON "/usr/local/bin/python3.7"
 
 # NVM
 function nvm
-   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
+   bass source $NVM_DIR/nvm.sh --no-use ';' nvm $argv
 end
 set -x NVM_DIR ~/.nvm
 nvm use default --silent
