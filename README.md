@@ -5,7 +5,7 @@ MacOS .config for Tmux, fish, and nvim
 ### Setup 
 ```bash
 brew install iterm2 --cask
-brew install git fish fisher peco exa ghq node ripgrep fd wget
+brew install git fish fisher peco exa ghq node ripgrep fd wget tmux
 
 fisher install FabioAntunes/fish-nvm edc/bass jethrokuan/z oh-my-fish/theme-agnoster
 
