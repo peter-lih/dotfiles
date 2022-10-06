@@ -21,3 +21,7 @@ fish/conf.d/*
 
 # iterm2
 iterm2
+
+# gcloud SDK
+gcloud
+
