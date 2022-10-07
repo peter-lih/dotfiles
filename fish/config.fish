@@ -28,8 +28,9 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/google-cloud-sdk/bin $PATH
 set -gx PATH ~/.poetry/bin $PATH
-set -gx PATH /Library/Frameworks/Python.framework/Versions/3.8/bin $PATH
-set -gx PATH /Library/Frameworks/Python.framework/Versions/3.10/bin $PATH
+# Setting PATH for Python 3.10
+# The original version is saved in /Users/peter/.config/fish/config.fish.pysave
+set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 set -gx PATH /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin $PATH
 # set -gx PATH ~/Library/Android/sdk $ANDROID_SDK_ROOT
 # set -gx PATH $ANDROID_SDK_ROOT/emulator $PATH
