@@ -3,10 +3,14 @@ if (not status) then return end
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 
-null_ls.setup {
+null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
+      diagnostics_format = '[eslint] #{m}\n(#{c})',
+      -- ignore prettier warnings from eslint-plugin-prettier
+      filter = function(diagnostic)
+          return diagnostic.code ~= "prettier/prettier"
+      end,
     }),
     null_ls.builtins.diagnostics.fish,
     null_ls.builtins.formatting.black,
@@ -21,4 +25,4 @@ null_ls.setup {
       })
     end
   end,
-}
+})

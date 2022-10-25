@@ -11,5 +11,7 @@ fisher install FabioAntunes/fish-nvm edc/bass jethrokuan/z oh-my-fish/theme-agno
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+npm install -g @fsouza/prettierd eslint_d neovim pyright typescript-language-server
 ```
 
