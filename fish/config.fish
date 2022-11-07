@@ -31,9 +31,9 @@ set -gx PATH ~/.poetry/bin $PATH
 # Setting PATH for Python 3.10
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 set -gx PATH /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin $PATH
-# set -gx PATH ~/Library/Android/sdk $ANDROID_SDK_ROOT
-# set -gx PATH $ANDROID_SDK_ROOT/emulator $PATH
-# set -gx PATH $ANDROID_SDK_ROOT/platform-tools $PATH
+set -gx ANDROID_SDK_ROOT $HOME/Library/Android/sdk
+set -gx PATH $ANDROID_SDK_ROOT/emulator $PATH
+set -gx PATH $ANDROID_SDK_ROOT/platform-tools $PATH
 set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
 set -x TMUX_TMPDIR "/Users/peter/.tmux/tmp"
