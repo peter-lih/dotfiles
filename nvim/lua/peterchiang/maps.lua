@@ -28,7 +28,7 @@ keymap.set('', 'sj', '<C-w>j')
 keymap.set('', 'sl', '<C-w>l')
 
 -- Resize window
-keymap.set('n', '<C-w><left>', '<C-w><')
-keymap.set('n', '<C-w><right>', '<C-w>>')
-keymap.set('n', '<C-w><up>', '<C-w>+')
-keymap.set('n', '<C-w><down>', '<C-w>-')
+keymap.set('n', '<C-w><left>', ':vertical resize +10<Return>')
+keymap.set('n', '<C-w><right>', ':vertical resize -10<Return>')
+keymap.set('n', '<C-w><up>', ':resize +10<Return>')
+keymap.set('n', '<C-w><down>', ':resize -10<Return>')
