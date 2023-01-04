@@ -32,3 +32,7 @@ keymap.set('n', '<C-w><left>', ':vertical resize +10<Return>')
 keymap.set('n', '<C-w><right>', ':vertical resize -10<Return>')
 keymap.set('n', '<C-w><up>', ':resize +10<Return>')
 keymap.set('n', '<C-w><down>', ':resize -10<Return>')
+
+-- Scroll cursor
+keymap.set('n', '<C-b>', '15kzz')
+keymap.set('n', '<C-f>', '15jzz')
