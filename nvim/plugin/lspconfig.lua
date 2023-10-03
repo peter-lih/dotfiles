@@ -27,30 +27,30 @@ local on_attach = function(client, bufnr)
 end
 
 protocol.CompletionItemKind = {
-  '', -- Text
-  '', -- Method
-  '', -- Function
-  '', -- Constructor
-  '', -- Field
-  '', -- Variable
-  '', -- Class
-  'ﰮ', -- Interface
-  '', -- Module
+  '󰊄', -- Text
+  '', -- Method
+  '󰊕', -- Function
+  '', -- Constructor
+  '', -- Field
+  '󰫧', -- Variable
+  '', -- Class
+  '', -- Interface
+  '󰕳', -- Module
   '', -- Property
   '', -- Unit
-  '', -- Value
+  '󰦨', -- Value
   '', -- Enum
-  '', -- Keyword
-  '﬌', -- Snippet
+  '', -- Keyword
+  '', -- Snippet
   '', -- Color
   '', -- File
-  '', -- Reference
+  '', -- Reference
   '', -- Folder
   '', -- EnumMember
   '', -- Constant
-  '', -- Struct
+  '', -- Struct
   '', -- Event
-  'ﬦ', -- Operator
+  '', -- Operator
   '', -- TypeParameter
 }
 
