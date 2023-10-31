@@ -5,15 +5,9 @@ __*
 completions
 fish_variables
 fish_plugins
-fish/functions/bass.fish
-fish/functions/fish_mode_prompt.fish
-fish/functions/fish_prompt.fish
-fish/functions/fish_right_prompt.fish
-fish/functions/node*
-fish/functions/npm*
-fish/functions/nvm*
-fish/functions/npx*
-fish/functions/yarn*
+fish/functions/*
+!fish/functions/fish_user_key_bindings.fish
+!fish/functions/fzf_change_directory.fish
 fish/conf.d/*
 
 # xcode
