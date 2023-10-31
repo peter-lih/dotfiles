@@ -8,11 +8,17 @@ For Mac
 brew install iterm2 --cask
 brew install git fish fisher exa ghq node ripgrep fd wget tmux bat fzf
 
-fisher install FabioAntunes/fish-nvm edc/bass jethrokuan/z IlanCosman/tide@v5 andreiborisov/sponge  
+fisher install FabioAntunes/fish-nvm edc/bass jethrokuan/z IlanCosman/tide@v5 andreiborisov/sponge PatrickF1/fzf.fish 
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-npm install -g @fsouza/prettierd eslint_d neovim pyright typescript-language-server
+npm install -g @fsouza/prettierd eslint_d neovim pyright typescript-language-server commitizen cz-conventional-changelog
+
+### setup commitizen 
+echo '{
+  "path": "cz-conventional-changelog"
+}' > ~/.czrc
+
 ```
 
