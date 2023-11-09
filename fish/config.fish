@@ -39,6 +39,10 @@ set -gx LC_ALL "en_US.UTF-8"
 set -x TMUX_TMPDIR "/Users/peter/.tmux/tmp"
 set -gx CLOUDSDK_PYTHON "/usr/local/bin/python3.7"
 
+# tide items setup 
+set --universal tide_left_prompt_items pwd newline character
+set --universal tide_right_prompt_items git time
+
 # NodeJS
 # set -gx PATH node_modules/.bin $PATH
 
