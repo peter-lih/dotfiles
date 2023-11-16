@@ -1,17 +1,11 @@
-require('peterchiang.base')
-require('peterchiang.highlights')
-require('peterchiang.maps')
-require('peterchiang.plugins')
+if vim.loader then
+  vim.loader.enable()
+end
 
-local has = function(x)
-  return vim.fn.has(x) == 1
+_G.dd = function(...)
+  require("util.debug").dump(...)
 end
-local is_mac = has "macunix"
-local is_win = has "win32"
+vim.print = _G.dd
 
-if is_mac then
-  require('peterchiang.macos')
-end
-if is_win then
-  require('peterchiang.windows')
-end
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
