@@ -1,6 +1,7 @@
 set fish_greeting ""
 
 # set -gx TERM xterm-256color
+set -U fish_user_paths /opt/homebrew/bin
 
 # theme
 set -g theme_color_scheme terminal-dark
@@ -51,11 +52,11 @@ set --universal tide_right_prompt_items git time
 # set -gx PATH $GOPATH/bin $PATH
 
 # NVM
-function nvm
-   bass source $NVM_DIR/nvm.sh --no-use ';' nvm $argv
-end
+#function nvm
+#   bass source $NVM_DIR/nvm.sh --no-use ';' nvm $argv
+#end
 set -x NVM_DIR ~/.nvm
-nvm use default --silent
+#nvm use default --silent
 #function __check_rvm --on-variable PWD --description 'Do nvm stuff'
 #  status --is-command-substitution; and return
 #
