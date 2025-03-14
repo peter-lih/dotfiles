@@ -10,8 +10,10 @@ Remember to configure the terminal to treat the option/alt key as a "Ecs+", so f
 
 ```bash
 brew install iterm2 --cask
-brew install git fish fisher exa ghq node ripgrep fd wget tmux bat fzf
+brew install git fish fisher eza ghq node ripgrep fd wget tmux bat fzf font-hack-nerd-font
 
+# rememeber to enter 'fish' shell with `fish`
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher install FabioAntunes/fish-nvm edc/bass jethrokuan/z IlanCosman/tide@v5 andreiborisov/sponge PatrickF1/fzf.fish
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
