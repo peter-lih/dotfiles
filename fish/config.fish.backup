@@ -38,10 +38,6 @@ set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
 set -x TMUX_TMPDIR "/Users/peter/.tmux/tmp"
 set -gx CLOUDSDK_PYTHON /usr/bin/python3
-# set for python mysqlclient package
-set -gx fish_user_paths /opt/homebrew/opt/mysql-client@8.0/bin /opt/homebrew/opt/mysql@8.0/bin /opt/homebrew/bin
-set -gx MYSQLCLIENT_CFLAGS "$(mysql_config --cflags)"
-set -gx MYSQLCLIENT_LDFLAGS "$(mysql_config --libs)"
 
 # tide items setup 
 set --universal tide_left_prompt_items pwd newline character
@@ -84,6 +80,6 @@ if test -f $LOCAL_CONFIG
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/peter/Downloads/google-cloud-sdk/path.fish.inc' ]
-    . '/Users/peter/Downloads/google-cloud-sdk/path.fish.inc'
+if [ -f '/Users/peter/google-cloud-sdk/path.fish.inc' ]
+    . '/Users/peter/google-cloud-sdk/path.fish.inc'
 end

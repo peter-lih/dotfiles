@@ -10,6 +10,9 @@ fish/functions/*
 !fish/functions/fzf_change_directory.fish
 fish/conf.d/*
 
+# uv
+uv
+
 # xcode
 .DS_Store
 
