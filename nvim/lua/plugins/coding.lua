@@ -1,4 +1,12 @@
 return {
+  -- copilot-chat
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    opts = {
+      model = "claude-sonnet-4",
+    },
+  },
+
   -- Create annotations with one keybind, and jump your cursor in the inserted annotation
   {
     "danymat/neogen",
