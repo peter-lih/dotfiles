@@ -84,6 +84,6 @@ if test -f $LOCAL_CONFIG
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/peter/Downloads/google-cloud-sdk/path.fish.inc' ]
-    . '/Users/peter/Downloads/google-cloud-sdk/path.fish.inc'
+if [ -f '/Users/peter/Documents/google-cloud-sdk/path.fish.inc' ]
+    . '/Users/peter/Documents/google-cloud-sdk/path.fish.inc'
 end
