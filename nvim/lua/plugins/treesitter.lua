@@ -57,7 +57,7 @@ return {
         },
       },
     },
-    config = function(_, opts)
+    configs = function(_, opts)
       require("nvim-treesitter").setup(opts)
 
       -- MDX
