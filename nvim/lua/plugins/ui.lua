@@ -3,6 +3,7 @@ return {
   {
     "folke/noice.nvim",
     opts = function(_, opts)
+      opts.notify = { enabled = false }
       table.insert(opts.routes, {
         filter = {
           event = "notify",
@@ -74,7 +75,6 @@ return {
   -- buffer line
   {
     "akinsho/bufferline.nvim",
-    tag = "v4.5.2",
     event = "VeryLazy",
     keys = {
       { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
