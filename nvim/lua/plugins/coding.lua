@@ -3,7 +3,7 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {
-      model = "claude-sonnet-4",
+      model = "claude-haiku-4.5",
     },
   },
 
