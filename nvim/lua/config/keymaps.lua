@@ -63,6 +63,29 @@ end)
 vim.api.nvim_create_user_command("GeminiCommit", function()
   local api_key = os.getenv("NVIM4GEMINICOMMIT_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
   if not api_key or api_key == "" then
+    -- Fallback: try reading directly from fish .env file
+    local home = os.getenv("HOME")
+    if home then
+      local env_file = home .. "/.config/fish/.env"
+      local f = io.open(env_file, "r")
+      if f then
+        for line in f:lines() do
+          local key, val = line:match("^%s*([^=]+)%s*=%s*(.*)%s*$")
+          if key then
+            key = vim.trim(key)
+            if key == "NVIM4GEMINICOMMIT_GEMINI_API_KEY" or key == "GEMINI_API_KEY" then
+              -- Strip quotes and trim whitespace
+              api_key = vim.trim(val):gsub("^['\"]", ""):gsub("['\"]$", "")
+              break
+            end
+          end
+        end
+        f:close()
+      end
+    end
+  end
+
+  if not api_key or api_key == "" then
     vim.notify(
       "Gemini API key not found. Please set NVIM4GEMINICOMMIT_GEMINI_API_KEY or GEMINI_API_KEY env variable.",
       vim.log.levels.ERROR

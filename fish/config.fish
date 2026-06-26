@@ -109,5 +109,5 @@ if test -f $env_file
             set -l value (string trim -c '"\'' $parts[2])
             set -gx $key $value
         end
-    end < $env_file
+    end <$env_file
 end
