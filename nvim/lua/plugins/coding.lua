@@ -1,11 +1,4 @@
 return {
-  -- copilot-chat
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    opts = {
-      model = "claude-haiku-4.5",
-    },
-  },
 
   -- Create annotations with one keybind, and jump your cursor in the inserted annotation
   {

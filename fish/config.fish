@@ -87,3 +87,27 @@ end
 if [ -f '/Users/peter/Documents/google-cloud-sdk/path.fish.inc' ]
     . '/Users/peter/Documents/google-cloud-sdk/path.fish.inc'
 end
+
+# Added by Antigravity
+fish_add_path /Users/peter/.antigravity/antigravity/bin
+
+# Added by Antigravity CLI installer
+set -gx PATH "/Users/peter/.local/bin" $PATH
+
+# Load environment variables from local .env if it exists
+set -l env_file (dirname (status --current-filename))/.env
+if test -f $env_file
+    while read -la line
+        # Skip comments and empty lines
+        if string match -r '^\s*#' "$line"; or string match -r '^\s*$' "$line"
+            continue
+        end
+        # Split on first '='
+        set -l parts (string split -m 1 '=' $line)
+        if test (count $parts) -eq 2
+            set -l key (string trim $parts[1])
+            set -l value (string trim -c '"\'' $parts[2])
+            set -gx $key $value
+        end
+    end < $env_file
+end

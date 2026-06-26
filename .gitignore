@@ -34,3 +34,7 @@ AWSVPNClient
 
 # github-copilot
 gh
+
+# env files containing sensitive keys
+fish/.env
+
