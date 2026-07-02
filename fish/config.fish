@@ -111,3 +111,4 @@ if test -f $env_file
         end
     end <$env_file
 end
+set -gx CLOUDSDK_PYTHON /usr/local/bin/python3
