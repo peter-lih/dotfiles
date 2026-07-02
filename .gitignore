@@ -38,3 +38,5 @@ gh
 # env files containing sensitive keys
 fish/.env
 
+cagent
+
