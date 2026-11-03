@@ -115,7 +115,8 @@ vim.api.nvim_create_user_command("GeminiCommit", function()
   }
 
   local payload_str = vim.json.encode(payload)
-  local url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" .. api_key
+  local url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key="
+    .. api_key
 
   local response_body = ""
   local stdout = vim.loop.new_pipe(false)
