@@ -93,10 +93,38 @@ vim.api.nvim_create_user_command("GeminiCommit", function()
     return
   end
 
-  local diff = vim.fn.system("git diff --cached")
-  if diff == "" then
+  local stat = vim.fn.system({ "git", "diff", "--cached", "--stat" })
+  if vim.v.shell_error ~= 0 then
+    vim.notify("Failed to inspect staged git changes: " .. vim.trim(stat), vim.log.levels.ERROR)
+    return
+  end
+  if stat == "" then
     vim.notify("No staged changes found. Use 'git add' to stage changes first.", vim.log.levels.WARN)
     return
+  end
+
+  local diff = vim.fn.system({
+    "git",
+    "diff",
+    "--cached",
+    "--",
+    ".",
+    ":!*.lock",
+    ":!package-lock.json",
+    ":!pnpm-lock.yaml",
+    ":!lazy-lock.json",
+  })
+  if vim.v.shell_error ~= 0 then
+    diff = ""
+  end
+
+  local max_diff_bytes = 200 * 1024
+  local diff_content = "Summary (git diff --cached --stat):\n" .. stat
+  if diff ~= "" then
+    if #diff > max_diff_bytes then
+      diff = diff:sub(1, max_diff_bytes) .. "\n\n... [diff truncated]"
+    end
+    diff_content = diff_content .. "\nDiff (lockfiles excluded):\n" .. diff
   end
 
   vim.notify("Generating commit message via Gemini...", vim.log.levels.INFO)
@@ -107,7 +135,7 @@ vim.api.nvim_create_user_command("GeminiCommit", function()
         parts = {
           {
             text = "Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block. Here is the git diff:\n\n"
-              .. diff,
+              .. diff_content,
           },
         },
       },
@@ -119,28 +147,35 @@ vim.api.nvim_create_user_command("GeminiCommit", function()
     .. api_key
 
   local response_body = ""
+  local stdin = vim.loop.new_pipe(false)
   local stdout = vim.loop.new_pipe(false)
   local stderr = vim.loop.new_pipe(false)
-  local handle
+  local handle, spawn_err
 
-  handle = vim.loop.spawn("curl", {
+  handle, spawn_err = vim.loop.spawn("curl", {
     args = {
       "-s",
       "-X",
       "POST",
       "-H",
       "Content-Type: application/json",
-      "-d",
-      payload_str,
+      "--data-binary",
+      "@-",
       url,
     },
-    stdio = { nil, stdout, stderr },
+    stdio = { stdin, stdout, stderr },
   }, function(code, signal)
     stdout:read_stop()
     stderr:read_stop()
-    stdout:close()
-    stderr:close()
-    handle:close()
+    if not stdout:is_closing() then
+      stdout:close()
+    end
+    if not stderr:is_closing() then
+      stderr:close()
+    end
+    if handle and not handle:is_closing() then
+      handle:close()
+    end
 
     if code ~= 0 then
       vim.schedule(function()
@@ -153,6 +188,14 @@ vim.api.nvim_create_user_command("GeminiCommit", function()
     if not ok then
       vim.schedule(function()
         vim.notify("Failed to parse Gemini response.", vim.log.levels.ERROR)
+      end)
+      return
+    end
+
+    if parsed.error then
+      local err_msg = parsed.error.message or vim.json.encode(parsed.error)
+      vim.schedule(function()
+        vim.notify("Gemini API error: " .. err_msg, vim.log.levels.ERROR)
       end)
       return
     end
@@ -188,6 +231,26 @@ vim.api.nvim_create_user_command("GeminiCommit", function()
         vim.notify("Buffer is not modifiable. Commit message copied to clipboard:\n\n" .. text, vim.log.levels.INFO)
       end
     end)
+  end)
+
+  if not handle then
+    if not stdin:is_closing() then
+      stdin:close()
+    end
+    if not stdout:is_closing() then
+      stdout:close()
+    end
+    if not stderr:is_closing() then
+      stderr:close()
+    end
+    vim.notify("Failed to start curl: " .. tostring(spawn_err), vim.log.levels.ERROR)
+    return
+  end
+
+  stdin:write(payload_str, function()
+    if not stdin:is_closing() then
+      stdin:close()
+    end
   end)
 
   stdout:read_start(function(err, data)

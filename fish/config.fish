@@ -37,7 +37,7 @@ set -gx PATH $ANDROID_SDK_ROOT/platform-tools $PATH
 set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
 set -x TMUX_TMPDIR "/Users/peter/.tmux/tmp"
-set -gx CLOUDSDK_PYTHON /usr/bin/python3
+# set -gx CLOUDSDK_PYTHON /usr/bin/python3
 # set for python mysqlclient package
 set -gx fish_user_paths /opt/homebrew/opt/mysql-client@8.0/bin /opt/homebrew/opt/mysql@8.0/bin /opt/homebrew/bin
 set -gx MYSQLCLIENT_CFLAGS "$(mysql_config --cflags)"
@@ -111,4 +111,4 @@ if test -f $env_file
         end
     end <$env_file
 end
-set -gx CLOUDSDK_PYTHON /usr/local/bin/python3
+set -gx CLOUDSDK_PYTHON (which python3)
